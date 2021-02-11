@@ -1,3 +1,1 @@
-<div>
-    {{-- Care about people's approval and you will be their prisoner. --}}
-</div>
+<a wire:click.prevent="logout" class=" cursor-pointer block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Logout</a>

@@ -3,6 +3,7 @@
 use App\Http\Livewire\Category\ListCategories;
 use App\Http\Livewire\Home\Home;
 use App\Http\Livewire\Auth\Login;
+use App\Http\Livewire\Auth\Register;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,5 +18,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/login', Login::class);
-Route::get('/', Home::class);
-Route::get('/category', ListCategories::class);
+Route::get('/signup', Register::class);
+Route::middleware('custom_auth')->group(function() {
+    Route::get('/', Home::class);
+    Route::get('/category', ListCategories::class);
+});
+
+

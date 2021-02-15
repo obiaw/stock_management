@@ -8,6 +8,7 @@
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js" defer></script>
 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     @livewireStyles
+    @stack('styles')
 </head>
 <body>
     <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200">
@@ -22,5 +23,6 @@
     </div>
     </div>
     @livewireScripts
+    
 </body>
 </html>

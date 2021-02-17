@@ -11,11 +11,15 @@ class Categories extends Component
 {
     use WithPagination;
     public $isOpen = 0;
-    public $category;
+    public $category, $category_id;
     protected $rules =  ['category.name' => 'required'];
 
     public $search = '';
 
+
+    public function mount(){
+        $this->category = new Category();
+    }
     public function updatingSearch()
     {
         $this->resetPage();
@@ -23,15 +27,12 @@ class Categories extends Component
 
     public function render()
     {   
-
-        return view('livewire.categories', [
-                'categories' => Category::where('name', 'like', '%'.$this->search.'%')
-                    ->where('user_id', auth()->user()->id)
-                    ->paginate(10)
-                    ])
+        $categories = Category::where('name', 'like', '%'.$this->search.'%')
+                                ->where('user_id', auth()->user()->id)
+                                ->paginate(10);
+        return view('livewire.categories', ['categories' => $categories])
                 ->extends('layouts.app')
-                ->section('content'
-            );
+                ->section('content');
     }
 
     private function resetInputFields(){
@@ -40,24 +41,30 @@ class Categories extends Component
 
     public function create()
     {
+        $this->resetInputFields();
         $this->openModal();
     }
+    
     public function openModal()
     {
         $this->isOpen = true;
     }
+
 
     public function closeModal(){
         $this->isOpen = false;
     }
     public function store()
     {
-        
         $this->validate();
-        $this->category->user_id = auth()->user()->id;
-        $this->category->slug = Str::slug($this->category->name);
-        $this->category->save();
-        session()->flash('message', 'Category Created Successfully.');
+        Category::updateOrCreate(['id' => $this->category_id], 
+        [
+            'name' => $this->category->name,
+            'user_id' => auth()->user()->id,
+            'slug' => Str::slug($this->category->name)
+        ]);
+        session()->flash('message', 
+        $this->category_id ? 'Category Updated Successfully.' : 'Category Created Successfully.');
         $this->closeModal();
         $this->resetInputFields();
         
@@ -73,7 +80,8 @@ class Categories extends Component
     public function delete($id)
     {
         Category::find($id)->delete();
-        session()->flash('message', 'Post Deleted Successfully.');
+        session()->flash('message', 'Category Deleted Successfully.');
     }
 
 }
+

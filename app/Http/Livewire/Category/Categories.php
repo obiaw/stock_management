@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Category;
 
 use App\Models\Category;
-use Category as GlobalCategory;
 use Illuminate\Support\Str;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -31,7 +30,7 @@ class Categories extends Component
         $categories = Category::where('name', 'like', '%'.$this->search.'%')
                                 ->where('user_id', auth()->user()->id)
                                 ->paginate(10);
-        return view('livewire.categories', ['categories' => $categories])
+        return view('livewire.category.categories', ['categories' => $categories])
                 ->extends('layouts.app')
                 ->section('content');
     }

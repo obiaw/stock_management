@@ -3,7 +3,7 @@
 use App\Http\Livewire\Home\Home;
 use App\Http\Livewire\Auth\Login;
 use App\Http\Livewire\Auth\Register;
-use App\Http\Livewire\Categories;
+use App\Http\Livewire\Category\Categories;
 use Illuminate\Support\Facades\Route;
 
 /*

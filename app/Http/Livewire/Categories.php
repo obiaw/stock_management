@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Category;
+use Category as GlobalCategory;
 use Illuminate\Support\Str;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -72,9 +73,13 @@ class Categories extends Component
     
     public function edit($id)
     {
-        $cate = Category::findOrFail($id);
-        $this->name = $cate->name;
-        $this->slug = Str::slug($cate->name);
+        // $cate = Category::findOrFail($id);
+        // $this->name = $cate->name;
+        // $this->slug = Str::slug($cate->name);
+        // $this->openModal();
+        $cat = Category::findOrFail($id);
+        $this->category_id = $id;
+        $this->category->name = $cat->name;
         $this->openModal();
     }
     public function delete($id)

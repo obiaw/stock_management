@@ -12,7 +12,6 @@
                 <div class="mb-4">
                     <label for="exampleFormControlInput1" class="block text-gray-700 text-sm font-bold mb-3">Category Name:</label>
                     <input type="text" class="appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
-                    id="name" placeholder="Enter Name" 
                     name="name"
                     wire:model="category.name">
                     @error('category.name') <span class="text-red-500">{{ $message }}</span>@enderror

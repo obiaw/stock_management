@@ -68,7 +68,7 @@
                                 </td>
                                 <td class="px-4 py-2 text-sm leading-5 text-blue-900 whitespace-no-wrap border-b">{{date('d-m-Y', strtotime($cate->created_at))}}</td>
                                 <td class="px-1 py-2 text-sm leading-5 text-left whitespace-no-wrap border-b">
-                                    <button class="px-5 py-2 text-blue-500 transition duration-300 border border-blue-500 rounded hover:bg-blue-700 hover:text-white focus:outline-none"><i class="fa fa-eye"></i></button>
+                                    <button wire:click="edit({{ $cate->id }})" class="px-5 py-2 text-blue-500 transition duration-300 border border-blue-500 rounded hover:bg-blue-700 hover:text-white focus:outline-none"><i class="fa fa-eye"></i></button>
                                     <button wire:click="delete({{ $cate->id }})" class="px-5 py-2 text-red-500 transition duration-300 border border-red-500 rounded hover:bg-red-700 hover:text-white focus:outline-none"><i class="fa fa-times"></i></button>
                                 </td>
                         </tr>

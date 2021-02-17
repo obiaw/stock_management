@@ -73,10 +73,6 @@ class Categories extends Component
     
     public function edit($id)
     {
-        // $cate = Category::findOrFail($id);
-        // $this->name = $cate->name;
-        // $this->slug = Str::slug($cate->name);
-        // $this->openModal();
         $cat = Category::findOrFail($id);
         $this->category_id = $id;
         $this->category->name = $cat->name;
